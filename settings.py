@@ -64,6 +64,8 @@ MAVEN_DIR = '%s/.m2/repository/' % os.path.expanduser('~')
 
 # 临时文件存储
 SOURCE_DIR = '/tmp/maven/source/'
+if os.path.isfile(SOURCE_DIR):
+    os.mkdir(SOURCE_DIR)
 
 # 结果存储
-RESULT_FILE = 'result.txt'
+RESULT_FILE = 'logs/result.txt'
