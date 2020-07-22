@@ -11,7 +11,7 @@ from lib import *
 
 
 if __name__ == '__main__':
-    m2_dir = "/Users/xxxxxxx/.m2/"
+    m2_dir = "/Users/mody/.m2/"
     jar_file_list = get_file_list(m2_dir)
     jar_file_list = clean(jar_file_list)
     decomplied_jar_list = read_file("./jar_list.txt")
