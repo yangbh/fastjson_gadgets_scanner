@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+# author: yangbh
 
-
-"""
-Created on 2019/8/7 
-
-@author: tmy
-"""
+import os
+import sys
+import logging
 from utils.lib import *
 from utils.scan_jndi import scan_jndi_gadgate, clean
 from settings import *
-import logging
 from pprint import pprint, pformat
 
 logging.basicConfig(level=logging.WARNING,
@@ -18,11 +15,12 @@ logging.basicConfig(level=logging.WARNING,
                     filename='logs/scanner.log'
                 )
 
-def main():
+def main(maven_dir=MAVEN_DIR):
     '''
     :return:
     '''
-    jar_files = get_file_list(MAVEN_DIR)
+    print('maven_dir: %s' % maven_dir)
+    jar_files = get_file_list(maven_dir)
     print('total: %s' % len(jar_files))
     logging.warning('total jars: %s' % len(jar_files))
 
@@ -49,5 +47,17 @@ def main():
     results = clean(scanner_list)
     logging.warning(pformat(results))
 
+def usage():
+    print('usage: python %s [maven_dir]' % __file__)
+    exit(1)
+
 if __name__ == '__main__':
-    main()
+    maven_dir = MAVEN_DIR
+    # print(sys.argv)
+    if len(sys.argv) == 2:
+        if os.path.isdir(sys.argv[1]):
+            maven_dir = sys.argv[1]
+    elif len(sys.argv) > 2:
+        usage()
+
+    main(maven_dir)
