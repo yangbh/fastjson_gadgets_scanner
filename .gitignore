@@ -109,6 +109,3 @@ venv.bak/
 
 logs/
 result.txt
-settings.py
-utils/scan_jndi.py
-utils/scan_readObject.py
